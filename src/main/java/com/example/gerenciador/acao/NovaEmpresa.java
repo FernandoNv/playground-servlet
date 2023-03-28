@@ -1,18 +1,19 @@
-package com.example.gerenciador.servlet;
+package com.example.gerenciador.acao;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import com.example.gerenciador.modelo.Banco;
+import com.example.gerenciador.modelo.Empresa;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "NovaEmpresaServlet", value = "/novaEmpresa")
-public class NovaEmpresaServlet extends HttpServlet {
+public class NovaEmpresa implements Acao {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Cadastrando nova empresa");
 
         String nomeEmpresa = request.getParameter("nome");
@@ -33,10 +34,7 @@ public class NovaEmpresaServlet extends HttpServlet {
         banco.adiciona(empresa);
 
         request.setAttribute("empresa", empresa.getNome());
-        response.sendRedirect("listaEmpresas");
-        //CHAMAR O JSP
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas");
-//        request.setAttribute("empresa", nomeEmpresa);
-//        requestDispatcher.forward(request, response);
+
+        return "redirect:entrada?acao=ListaEmpresas";
     }
 }

@@ -1,11 +1,10 @@
-package com.example.gerenciador.servlet;
+package com.example.gerenciador.modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Banco {
     private static List<Empresa> lista = new ArrayList<>();
