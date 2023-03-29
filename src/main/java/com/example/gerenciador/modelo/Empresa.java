@@ -1,4 +1,4 @@
-package com.example.gerenciador.servlet;
+package com.example.gerenciador.modelo;
 
 import java.util.Date;
 import java.util.Objects;

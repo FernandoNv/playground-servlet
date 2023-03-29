@@ -1,18 +1,19 @@
-package com.example.gerenciador.servlet;
+package com.example.gerenciador.acao;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import com.example.gerenciador.modelo.Banco;
+import com.example.gerenciador.modelo.Empresa;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "EditaEmpresaServlet", value = "/editaEmpresa")
-public class EditaEmpresaServlet extends HttpServlet {
+public class EditaEmpresa implements Acao {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long idEmpresa = Long.valueOf(request.getParameter("id"));
         Banco banco = new Banco();
 
@@ -31,6 +32,6 @@ public class EditaEmpresaServlet extends HttpServlet {
         empresa.setNome(nomeEmpresa);
         empresa.setDataAbertura(dataAberturaEmpresa);
 
-        response.sendRedirect("listaEmpresas");
+        return "redirect:entrada?acao=ListaEmpresas";
     }
 }
