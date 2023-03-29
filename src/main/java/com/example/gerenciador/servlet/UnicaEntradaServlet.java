@@ -7,10 +7,12 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "UnicaEntradaServlet", value = "/entrada")
+//@WebServlet(name = "UnicaEntradaServlet", urlPatterns = "/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("UnicaEntradaServlet - Rodando...");
+
         String entradaParam = request.getParameter("acao");
         String nome = null;
 
